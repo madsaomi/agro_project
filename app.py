@@ -9,7 +9,7 @@ import requests as http_requests
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 CORS(app)
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -89,7 +89,7 @@ TRANSLATIONS = {
         "error_api": "Translation error. Please try again.",
         "error_too_long": "Text too long (max 5000 characters)",
     },
-    "ja": {
+    "jp": {
         "site_title": "Agro 5 Lang Hub — オンライン翻訳",
         "hero_title": "瞬時に翻訳",
         "hero_subtitle": "5つの言語への無料テキスト翻訳 — 迅速で正確",
@@ -113,7 +113,7 @@ TRANSLATIONS = {
         "error_api": "翻訳エラー。もう一度お試しください。",
         "error_too_long": "テキストが長すぎます（最大5000文字）",
     },
-    "kaa": {
+    "kr": {
         "site_title": "Agro 5 Lang Hub — Onlayn Awdarmashı",
         "hero_title": "Derrew awdarıń",
         "hero_subtitle": "5 tilge tegin tekst awdarması — tez hám anıq",
