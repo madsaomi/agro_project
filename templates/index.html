@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="{{ ui_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ s.hero_subtitle }}">
+    <title>{{ s.site_title }}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Animated Background Orbs -->
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+    </div>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="{{ url_for('index') }}" class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                        <path d="M10 16h12M16 10v12" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M11 11l10 10M21 11l-10 10" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                                <stop stop-color="#818cf8"/>
+                                <stop offset="1" stop-color="#c084fc"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">LinguaFlow</span>
+            </a>
+
+            <!-- Interface Language Switcher (simple links, no JS) -->
+            <nav class="lang-switcher" aria-label="Interface language">
+                {% for code, label in ui_langs.items() %}
+                <a href="{{ url_for('set_language', lang_code=code) }}"
+                   class="lang-btn {{ 'active' if ui_lang == code else '' }}"
+                   id="btn-ui-{{ code }}">
+                    {{ label }}
+                </a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══════════════ MAIN ═══════════════ -->
+    <main class="main">
+        <div class="container">
+
+            <!-- Hero -->
+            <section class="hero">
+                <h1 class="hero-title">{{ s.hero_title }}</h1>
+                <p class="hero-subtitle">{{ s.hero_subtitle }}</p>
+            </section>
+
+            <!-- Error Message -->
+            {% if error_msg %}
+            <div class="error-banner" role="alert">
+                <span class="error-icon">⚠️</span>
+                <span>{{ error_msg }}</span>
+            </div>
+            {% endif %}
+
+            <!-- ═══════════════ TRANSLATOR CARD ═══════════════ -->
+            <section class="translator-card">
+                <form method="POST" action="{{ url_for('index') }}" id="translateForm">
+
+                    <!-- Language Selectors Row -->
+                    <div class="lang-row">
+                        <div class="lang-select-wrap">
+                            <label class="lang-label" for="source_lang">{{ s.from_label }}</label>
+                            <select class="lang-select" id="source_lang" name="source_lang">
+                                {% for code, name in languages.items() %}
+                                <option value="{{ code }}" {{ 'selected' if source_lang == code else '' }}>{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <button type="submit" name="action" value="swap" class="swap-btn" title="{{ s.swap_btn }}" aria-label="{{ s.swap_btn }}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 16l-4-4 4-4"/>
+                                <path d="M3 12h18"/>
+                                <path d="M17 8l4 4-4 4"/>
+                            </svg>
+                        </button>
+
+                        <div class="lang-select-wrap">
+                            <label class="lang-label" for="target_lang">{{ s.to_label }}</label>
+                            <select class="lang-select" id="target_lang" name="target_lang">
+                                {% for code, name in languages.items() %}
+                                <option value="{{ code }}" {{ 'selected' if target_lang == code else '' }}>{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Hidden field to pass result_text for swap -->
+                    <input type="hidden" name="result_text" value="{{ result_text }}">
+
+                    <!-- Text Areas -->
+                    <div class="text-areas">
+                        <div class="text-area-wrap source-wrap">
+                            <textarea
+                                class="text-input"
+                                id="source_text"
+                                name="source_text"
+                                placeholder="{{ s.input_placeholder }}"
+                                rows="6"
+                                maxlength="5000"
+                                aria-label="{{ s.from_label }}"
+                            >{{ source_text }}</textarea>
+                            <div class="text-meta">
+                                <span class="char-count">{{ source_text|length }} / 5000</span>
+                                <button type="submit" name="action" value="clear" class="clear-btn" aria-label="{{ s.clear_btn }}">✕</button>
+                            </div>
+                        </div>
+
+                        <div class="text-area-wrap result-wrap">
+                            <div class="result-text" id="resultText" aria-live="polite">
+                                {% if result_text %}
+                                <span class="result-translated">{{ result_text }}</span>
+                                {% else %}
+                                <span class="result-placeholder">{{ s.result_placeholder }}</span>
+                                {% endif %}
+                            </div>
+                            {% if result_text %}
+                            <div class="text-meta result-meta">
+                                <span class="copy-hint">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                                    </svg>
+                                    {{ s.copy_hint }}
+                                </span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Translate Button -->
+                    <button type="submit" name="action" value="translate" class="translate-btn" id="translateBtn">
+                        <span class="btn-text">{{ s.translate_btn }}</span>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- ═══════════════ FEATURES ═══════════════ -->
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">{{ s.feature1_title }}</h3>
+                    <p class="feature-desc">{{ s.feature1_desc }}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">{{ s.feature2_title }}</h3>
+                    <p class="feature-desc">{{ s.feature2_desc }}</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">{{ s.feature3_title }}</h3>
+                    <p class="feature-desc">{{ s.feature3_desc }}</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="footer">
+        <p>{{ s.footer_text }}</p>
+    </footer>
+
+</body>
+</html>
