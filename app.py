@@ -163,6 +163,34 @@ UI_LANGS = {
 
 MYMEMORY_URL = "https://api.mymemory.translated.net/get"
 LIBRETRANSLATE_URL = "https://libretranslate.com/translate"
+LINGVA_URL = "https://lingva.ml/api/v1"
+
+# Map internal keys to API codes
+API_CODES = {
+    "ru": "ru",
+    "uz": "uz",
+    "en": "en",
+    "jp": "ja",
+    "kr": "kaa",
+}
+
+
+def translate_lingva(text: str, source: str, target: str) -> dict:
+    """Translate using Lingva API (Google Translate mirror, very reliable)."""
+    # map internal 'jp'/'kr' to 'ja'/'kaa'
+    s_code = API_CODES.get(source, source)
+    t_code = API_CODES.get(target, target)
+
+    try:
+        url = f"{LINGVA_URL}/{s_code}/{t_code}/{text}"
+        resp = http_requests.get(url, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        if "translation" in data:
+            return {"success": True, "text": data["translation"]}
+    except Exception:
+        pass
+    return {"success": False, "text": ""}
 
 
 def translate_mymemory(text: str, source: str, target: str) -> dict:
@@ -200,10 +228,22 @@ def translate_libretranslate(text: str, source: str, target: str) -> dict:
 
 
 def do_translate(text: str, source: str, target: str) -> dict:
-    """Try MyMemory first, then LibreTranslate as fallback."""
-    result = translate_mymemory(text, source, target)
-    if not result["success"]:
-        result = translate_libretranslate(text, source, target)
+    """Main translation flow: Lingva -> MyMemory -> LibreTranslate."""
+    # 1. Try Lingva (Google mirror)
+    result = translate_lingva(text, source, target)
+    if result["success"]:
+        return result
+
+    # 2. Try MyMemory
+    # map for MyMemory too
+    s_code = API_CODES.get(source, source)
+    t_code = API_CODES.get(target, target)
+    result = translate_mymemory(text, s_code, t_code)
+    if result["success"]:
+        return result
+
+    # 3. Try LibreTranslate
+    result = translate_libretranslate(text, s_code, t_code)
     return result
 
 
