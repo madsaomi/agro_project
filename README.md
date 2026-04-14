@@ -1,4 +1,4 @@
-# LinguaFlow 🌐
+# Agro 5 Lang Hub 🌐
 
 Бесплатный онлайн-переводчик текстов на 5 языков.  
 Работает на Flask (Python), **без JavaScript** — вся логика на сервере.
@@ -31,8 +31,8 @@
 ### 1. Клонировать репозиторий
 
 ```bash
-git clone https://github.com/your-username/linguaflow.git
-cd linguaflow
+git clone https://github.com/your-username/agro-5-lang-hub.git
+cd agro-5-lang-hub
 ```
 
 ### 2. Создать виртуальное окружение (рекомендуется)
@@ -66,7 +66,7 @@ python app.py
 ## 📁 Структура проекта
 
 ```
-linguaflow/
+agro-5-lang-hub/
 ├── app.py                  # Flask-сервер (все маршруты + i18n + API)
 ├── requirements.txt        # Python-зависимости
 ├── README.md               # Документация

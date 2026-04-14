@@ -1,5 +1,5 @@
 """
-LinguaFlow — Flask Translation Website
+Agro 5 Lang Hub — Flask Translation Website
 Всё на сервере, без JavaScript. Jinja2 + Flask sessions.
 """
 
@@ -18,7 +18,7 @@ CORS(app)
 
 TRANSLATIONS = {
     "ru": {
-        "site_title": "LinguaFlow — Онлайн Переводчик",
+        "site_title": "Agro 5 Lang Hub — Онлайн Переводчик",
         "hero_title": "Переводите мгновенно",
         "hero_subtitle": "Бесплатный перевод текстов на 5 языков — быстро и точно",
         "from_label": "Откуда",
@@ -35,14 +35,14 @@ TRANSLATIONS = {
         "feature2_desc": "Русский, узбекский, английский, японский и каракалпакский",
         "feature3_title": "Бесплатно",
         "feature3_desc": "Без регистрации и ограничений",
-        "footer_text": "© 2026 LinguaFlow. Бесплатный переводчик.",
+        "footer_text": "© 2026 Agro 5 Lang Hub. Бесплатный переводчик.",
         "error_empty": "Введите текст для перевода",
         "error_same_lang": "Выберите разные языки",
         "error_api": "Ошибка перевода. Попробуйте снова.",
         "error_too_long": "Текст слишком длинный (максимум 5000 символов)",
     },
     "uz": {
-        "site_title": "LinguaFlow — Onlayn Tarjimon",
+        "site_title": "Agro 5 Lang Hub — Onlayn Tarjimon",
         "hero_title": "Darhol tarjima qiling",
         "hero_subtitle": "5 tilga bepul matn tarjimasi — tez va aniq",
         "from_label": "Qayerdan",
@@ -59,14 +59,14 @@ TRANSLATIONS = {
         "feature2_desc": "Rus, o'zbek, ingliz, yapon va qoraqalpoq tillari",
         "feature3_title": "Bepul",
         "feature3_desc": "Ro'yxatdan o'tmasdan va cheklovlarsiz",
-        "footer_text": "© 2026 LinguaFlow. Bepul tarjimon.",
+        "footer_text": "© 2026 Agro 5 Lang Hub. Bepul tarjimon.",
         "error_empty": "Tarjima uchun matn kiriting",
         "error_same_lang": "Turli tillarni tanlang",
         "error_api": "Tarjima xatosi. Qayta urinib ko'ring.",
         "error_too_long": "Matn juda uzun (maksimum 5000 belgi)",
     },
     "en": {
-        "site_title": "LinguaFlow — Online Translator",
+        "site_title": "Agro 5 Lang Hub — Online Translator",
         "hero_title": "Translate Instantly",
         "hero_subtitle": "Free text translation in 5 languages — fast and accurate",
         "from_label": "From",
@@ -83,14 +83,14 @@ TRANSLATIONS = {
         "feature2_desc": "Russian, Uzbek, English, Japanese, and Karakalpak",
         "feature3_title": "Free",
         "feature3_desc": "No registration or restrictions",
-        "footer_text": "© 2026 LinguaFlow. Free translator.",
+        "footer_text": "© 2026 Agro 5 Lang Hub. Free translator.",
         "error_empty": "Enter text to translate",
         "error_same_lang": "Please select different languages",
         "error_api": "Translation error. Please try again.",
         "error_too_long": "Text too long (max 5000 characters)",
     },
     "ja": {
-        "site_title": "LinguaFlow — オンライン翻訳",
+        "site_title": "Agro 5 Lang Hub — オンライン翻訳",
         "hero_title": "瞬時に翻訳",
         "hero_subtitle": "5つの言語への無料テキスト翻訳 — 迅速で正確",
         "from_label": "翻訳元",
@@ -107,14 +107,14 @@ TRANSLATIONS = {
         "feature2_desc": "ロシア語、ウズベク語、英語、日本語、カラカルパク語",
         "feature3_title": "無料",
         "feature3_desc": "登録不要・制限なし",
-        "footer_text": "© 2026 LinguaFlow. 無料翻訳サービス。",
+        "footer_text": "© 2026 Agro 5 Lang Hub. 無料翻訳サービス。",
         "error_empty": "翻訳するテキストを入力してください",
         "error_same_lang": "異なる言語を選択してください",
         "error_api": "翻訳エラー。もう一度お試しください。",
         "error_too_long": "テキストが長すぎます（最大5000文字）",
     },
     "kaa": {
-        "site_title": "LinguaFlow — Onlayn Awdarmashı",
+        "site_title": "Agro 5 Lang Hub — Onlayn Awdarmashı",
         "hero_title": "Derrew awdarıń",
         "hero_subtitle": "5 tilge tegin tekst awdarması — tez hám anıq",
         "from_label": "Qayerden",
@@ -131,7 +131,7 @@ TRANSLATIONS = {
         "feature2_desc": "Rus, ózbeksha, ingliz, yapon hám qaraqalpaq tilleri",
         "feature3_title": "Tegin",
         "feature3_desc": "Dizimnen ótpesten hám sheklawlarsız",
-        "footer_text": "© 2026 LinguaFlow. Tegin awdarmashı.",
+        "footer_text": "© 2026 Agro 5 Lang Hub. Tegin awdarmashı.",
         "error_empty": "Awdarıw ushın tekst kiritiń",
         "error_same_lang": "Basqa tillerdi tańlań",
         "error_api": "Awdarma qátesi. Qayta urınıp kóriń.",

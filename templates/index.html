@@ -9,42 +9,31 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-    <!-- Animated Background Orbs -->
-    <div class="bg-orbs" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-    </div>
-
     <!-- ═══════════════ HEADER ═══════════════ -->
     <header class="header">
         <div class="header-inner">
             <a href="{{ url_for('index') }}" class="logo">
+                <!-- Minimalist Plant/Agro Logo -->
                 <div class="logo-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="2.5"/>
-                        <path d="M10 16h12M16 10v12" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M11 11l10 10M21 11l-10 10" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-                        <defs>
-                            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
-                                <stop stop-color="#818cf8"/>
-                                <stop offset="1" stop-color="#c084fc"/>
-                            </linearGradient>
-                        </defs>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22v-5"/>
+                        <path d="M9 8V2"/>
+                        <path d="M15 8V2"/>
+                        <path d="M12 17c-4 0-7-3-7-7V4c3 0 7 3 7 7"/>
+                        <path d="M12 17c4 0 7-3 7-7V4c-3 0-7 3-7 7"/>
                     </svg>
                 </div>
-                <span class="logo-text">LinguaFlow</span>
+                <span class="logo-text">Agro 5 <span>Lang Hub</span></span>
             </a>
 
-            <!-- Interface Language Switcher (simple links, no JS) -->
+            <!-- Interface Language Switcher -->
             <nav class="lang-switcher" aria-label="Interface language">
                 {% for code, label in ui_langs.items() %}
                 <a href="{{ url_for('set_language', lang_code=code) }}"
@@ -70,7 +59,7 @@
             <!-- Error Message -->
             {% if error_msg %}
             <div class="error-banner" role="alert">
-                <span class="error-icon">⚠️</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                 <span>{{ error_msg }}</span>
             </div>
             {% endif %}
@@ -92,7 +81,7 @@
 
                         <!-- Swap Button -->
                         <button type="submit" name="action" value="swap" class="swap-btn" title="{{ s.swap_btn }}" aria-label="{{ s.swap_btn }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M7 16l-4-4 4-4"/>
                                 <path d="M3 12h18"/>
                                 <path d="M17 8l4 4-4 4"/>
@@ -141,7 +130,7 @@
                             {% if result_text %}
                             <div class="text-meta result-meta">
                                 <span class="copy-hint">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="9" y="9" width="13" height="13" rx="2"/>
                                         <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
                                     </svg>
@@ -163,17 +152,23 @@
             <!-- ═══════════════ FEATURES ═══════════════ -->
             <section class="features">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
                     <h3 class="feature-title">{{ s.feature1_title }}</h3>
                     <p class="feature-desc">{{ s.feature1_desc }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    </div>
                     <h3 class="feature-title">{{ s.feature2_title }}</h3>
                     <p class="feature-desc">{{ s.feature2_desc }}</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
                     <h3 class="feature-title">{{ s.feature3_title }}</h3>
                     <p class="feature-desc">{{ s.feature3_desc }}</p>
                 </div>
